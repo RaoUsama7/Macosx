@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  sku    String   @id
+  brand  String
+  length Int
+  width  Int
+  price  Decimal  @db.Decimal(18, 2)
+
+  @@index([brand])
+  @@map("products")
+}
